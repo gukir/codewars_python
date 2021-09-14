@@ -1,16 +1,20 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def fib(n):
+    """Calculates the nth Fibonacci number"""
+    if n < 0:
+        return int((-1)**(n+1))*fib_iter(1, 0, 0, 1, abs(n))
+    else:
+        return fib_iter(1, 0, 0, 1, n)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def fib_iter(a, b, p, q, count):
+    if not count:
+        return b
+    elif not count % 2:
+        return fib_iter(a, b, p**2+q**2, q**2+2*p*q, count / 2)
+    else:
+        return fib_iter(a*q+b*q+a*p, b*p+a*q, p, q, count - 1)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+# for i in range(-10, 11, 1):
+#     print(i, fib(i))
+print(fib(1000000))
